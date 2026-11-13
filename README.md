@@ -1,7 +1,6 @@
 # 🛠️ ETL & Reporting Pipeline — E-Commerce SAMALARIS
 
-**Project Status:** Completed  
-**Tools:** Python (Pandas) | PostgreSQL | SQL | Power BI
+![Project Status](https://img.shields.io/badge/Project%20Status-Completed-brightgreen)  ![Tools](https://img.shields.io/badge/Tools-Python%20%7C%20PostgreSQL%20%7C%20Power%20BI%20-blue)
 
 ---
 
