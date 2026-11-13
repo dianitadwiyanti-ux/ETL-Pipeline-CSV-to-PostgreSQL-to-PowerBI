@@ -59,19 +59,32 @@ CSV Files (Already Separated Per Table)
         ↓ EXTRACT (Per File / Per Table)
         
 Python (Pandas)
+
     - Cleaned duplicates
+    
     - Standardized formats / naming
+    
     - Handled missing values
+    
     - Validated data quality
+    
     - Table structure preserved, no joining
+    
         ↓ LOAD (Per Table)
+        
 PostgreSQL (DBMS)
+
     - 4 clean & structured tables
+    
     - Centralized database
+
     - Single Source of Truth
+    
         ↓ VISUALIZE
+        
 Power BI Dashboard
     - Connected directly to PostgreSQL
+    
     - Table relationships managed in Power BI
     
 ---
