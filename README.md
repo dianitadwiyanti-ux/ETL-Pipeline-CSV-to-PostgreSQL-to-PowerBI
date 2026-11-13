@@ -46,6 +46,28 @@ In Q3 2026, SAMALARIS transaction data was still stored as separate CSV files pe
 ---
 ## 🔄 ETL Pipeline Architecture
 
+CSV Files (Already Separated Per Table)
+    - dim_customers.csv -> table dim_customers
+    - dim_products.csv -> table dim_products
+    - order.csv -> table order
+    - shipping_details.csv -> table shipping_details
+        ↓ EXTRACT (Per File / Per Table)
+Python (Pandas) -> Transform
+    - Cleaned duplicates
+    - Standardized formats / naming
+    - Handled missing values
+    - Validated data quality
+    - Table structure preserved, no joining
+        ↓ LOAD (Per Table)
+PostgreSQL (DBMS)
+    - 4 clean & structured tables
+    - Centralized database
+    - Single Source of Truth
+        ↓ VISUALIZE
+Power BI Dashboard
+    - Connected directly to PostgreSQL
+    - Table relationships managed in Power BI / PostgreSQL
+    
 ---
 
 ## ✅ Data Quality Checks
