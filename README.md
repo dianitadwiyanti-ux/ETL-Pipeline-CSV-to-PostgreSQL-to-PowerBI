@@ -47,11 +47,17 @@ In Q3 2026, SAMALARIS transaction data was still stored as separate CSV files pe
 ## 🔄 ETL Pipeline Architecture
 
 CSV Files (Already Separated Per Table)
+
     - dim_customers.csv -> table dim_customers
+    
     - dim_products.csv -> table dim_products
+    
     - order.csv -> table order
+    
     - shipping_details.csv -> table shipping_details
+    
         ↓ EXTRACT (Per File / Per Table)
+        
 Python (Pandas)
     - Cleaned duplicates
     - Standardized formats / naming
