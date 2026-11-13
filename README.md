@@ -52,7 +52,7 @@ CSV Files (Already Separated Per Table)
     - order.csv -> table order
     - shipping_details.csv -> table shipping_details
         ↓ EXTRACT (Per File / Per Table)
-Python (Pandas) -> Transform
+Python (Pandas)
     - Cleaned duplicates
     - Standardized formats / naming
     - Handled missing values
@@ -66,7 +66,7 @@ PostgreSQL (DBMS)
         ↓ VISUALIZE
 Power BI Dashboard
     - Connected directly to PostgreSQL
-    - Table relationships managed in Power BI / PostgreSQL
+    - Table relationships managed in Power BI
     
 ---
 
