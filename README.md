@@ -74,7 +74,7 @@ Python (Pandas)
         
 PostgreSQL (DBMS)
 
-    - 4 clean & structured tables
+    - Clean & structured tables
     
     - Centralized database
 
