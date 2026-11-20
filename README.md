@@ -31,7 +31,7 @@ SAMALARIS transaction data (covering Q1–Q3 2026) was previously stored as sepa
 - **Source Files & Target Tables:**
     - `dim_customers.csv` -> `dim_customers`
     - `dim_products.csv` -> `dim_products`
-    - `order.csv` -> `order` *(note: `order` is a reserved keyword in SQL, so quote as `"order"` when querying in PostgreSQL)*
+    - `order.csv` -> `order`
     - `shipping_details.csv` -> `shipping_details`
 - **Q3 2026 Highlight Metrics:**
     - Total Orders (Q3): 1,487 Transactions
@@ -79,6 +79,11 @@ Before loading cleaned tables into PostgreSQL, validation and standardization we
 ## F. Power BI Dashboard
 
 The Power BI dashboard connects directly to PostgreSQL to visualize operational metrics and support data-driven tracking.
+
+
+https://github.com/user-attachments/assets/dbf42ff2-302e-4b38-a580-dd45954e024a
+
+
 
 **Key Metrics Monitored:**
 - Gross Revenue & Net Revenue per Quarter / Month
