@@ -1,20 +1,20 @@
-# 🛠️ Self-Project ETL & Reporting Pipeline E-Commerce SAMALARIS
+# Self-Project ETL & Reporting Pipeline E-Commerce SAMALARIS
 
 ![Project Status](https://img.shields.io/badge/Project%20Status-Completed-brightgreen)  ![Tools](https://img.shields.io/badge/Tools-Python%20%7C%20PostgreSQL%20%7C%20Power%20BI%20-blue)
 
 ---
 
-## 📌 Executive Summary
+## A. Executive Summary
 
-This project builds an **end-to-end ETL pipeline** to transform SAMALARIS e-commerce transaction data from separate CSV files per table into a clean, structured database in PostgreSQL as a **Single Source of Truth** for reporting.
+This project builds an **end-to-end ETL pipeline** to transform SAMALARIS e-commerce transaction data from separate per-table CSV files into a clean, centralized database in PostgreSQL as a **Single Source of Truth** for reporting.
 
-Each CSV file was cleaned separately according to its own table structure, then loaded into PostgreSQL. The clean data was then visualized in Power BI for sales performance monitoring.
+Each CSV file was cleaned separately according to its table structure and loaded into PostgreSQL as individual tables (with relationships modeled in Power BI rather than pre-joining tables during ingestion)[cite: 3]. The structured data was then connected to Power BI for sales and return performance monitoring[cite: 3].
 
-As an example use case, the dashboard is used to monitor sales performance and return rate in Q3 2026.
+As an example use case, the dashboard is used to monitor sales performance and return rates in Q3 2026[cite: 3].
 
 ---
 
-## 🎯 Business Problem & Objectives
+## B. Business Problem & Objectives
 
 In Q3 2026, SAMALARIS transaction data was still stored as separate CSV files per table (`dim_customers`, `dim_products`, `order`, `shipping_details`) and was not yet centralized in a database, making it difficult to use for consistent reporting.
 
@@ -26,7 +26,7 @@ In Q3 2026, SAMALARIS transaction data was still stored as separate CSV files pe
 
 ---
 
-## 📊 Dataset Overview
+## C. Dataset Overview
 
 - **Data Source:** SAMALARIS Internal Transaction Data (Q1 - Q3 2026)
 - **Source Files:**
@@ -43,7 +43,7 @@ In Q3 2026, SAMALARIS transaction data was still stored as separate CSV files pe
 > Note: Files were already separated per table. No merging / joining was performed during ETL. Table structure was preserved.
 
 ---
-## 🔄 ETL Pipeline Architecture
+## D. ETL Pipeline Architecture
 
 CSV Files (Already Separated Per Table)
 
@@ -88,7 +88,7 @@ Power BI Dashboard
     
 ---
 
-## ✅ Data Quality Checks
+## E. Data Quality Checks
 
 Before loading data into PostgreSQL, validation was performed:
 - Duplicates removed
@@ -98,7 +98,7 @@ Before loading data into PostgreSQL, validation was performed:
 
 ---
 
-## 📊 Power BI Dashboard
+## F. Power BI Dashboard
 
 The dashboard was built on top of PostgreSQL to visualize key metrics and support data-driven decisions.
 
@@ -112,7 +112,7 @@ The dashboard was built on top of PostgreSQL to visualize key metrics and suppor
 
 ---
 
-## 📊 Dashboard Insights — Example Use Case
+## G. Dashboard Insights — Example Use Case
 
 The dashboard built on the clean PostgreSQL database is used to monitor Q3 2026 sales performance. Example insights obtained from the standardized data:
 
@@ -132,7 +132,7 @@ The dashboard built on the clean PostgreSQL database is used to monitor Q3 2026 
 
 ---
 
-## ✅ What This Pipeline Enables
+## H. What This Pipeline Enables
 
 Because data is now clean, centralized in PostgreSQL, and serves as a Single Source of Truth, the business can:
 - Monitor return rate per category, courier, and region without manual recapitulation from CSV files
@@ -141,7 +141,7 @@ Because data is now clean, centralized in PostgreSQL, and serves as a Single Sou
 
 ---
 
-## 🛠️ Tools & Skills Used
+## I. Tools & Skills Used
 
 - **ETL Method:** Extract → Transform → Load
 - **Transform:** Python (Pandas) — Data Cleansing, Standardization, Handling Missing Values, Data Validation
