@@ -69,63 +69,60 @@ CSV Files (Per Table)
 
 ## E. Data Quality Checks
 
-Before loading data into PostgreSQL, validation was performed:
-- Duplicates removed
-- Date formats & product naming standardized
-- Missing values handled
-- Data validated before loading into the database
-
+Before loading cleaned tables into PostgreSQL, validation and standardization were applied across datasets:
+- Removed duplicate records
+- Standardized date formats, text casing/spacing, and product naming
+- Handled missing values cleanly
+- Verified data consistency prior to database ingestion
 ---
 
 ## F. Power BI Dashboard
 
-The dashboard was built on top of PostgreSQL to visualize key metrics and support data-driven decisions.
+The Power BI dashboard connects directly to PostgreSQL to visualize operational metrics and support data-driven tracking.
 
-**Example metrics monitored:**
+**Key Metrics Monitored:**
 - Gross Revenue & Net Revenue per Quarter / Month
-- Total Orders, Total Quantity, Return Rate %
-- Return Reasons (Damaged in Transit, Wrong Size / Fit, etc.)
+- Total Orders, Total Quantity, Return Rate (%)
+- Return Reasons (Damaged in Transit, Wrong Size / Fit, Product Quality / Mismatch, Delayed Delivery, etc.)
 - Gross Revenue per City & Top Sales by Category
 
-*This dashboard is the output of the pipeline above, not a separate analysis project.*
+*Note: The dashboard is a reporting layer built on top of the ETL pipeline output rather than a separate standalone project.*
 
 ---
 
 ## G. Dashboard Insights — Example Use Case
 
-The dashboard built on the clean PostgreSQL database is used to monitor Q3 2026 sales performance. Example insights obtained from the standardized data:
+Using the cleaned data in PostgreSQL, the Q3 2026 dashboard highlights several operational patterns:
 
-**1. Return by Category**
-- Fashion is the largest contributor to returns with a return rate of 73.88%.
-- Main root causes of returns (Pareto Distribution): Damaged in Transit (30.76%), Product Quality / Mismatch (28.83%), Wrong Size / Fit (23.88%), Delayed Delivery (16.53%).
+1. **Return Rate by Category & Root Causes**
+   - Fashion recorded the highest return rate at 73.88%.
+   - Main return drivers (Pareto breakdown): Damaged in Transit (30.76%), Product Quality / Mismatch (28.83%), Wrong Size / Fit (23.88%), and Delayed Delivery (16.53%).
 
-**2. Courier & Region Performance**
-- Issues were found in delivery duration and safety in regions outside Java (especially Medan & Makassar).
-- Certain partner couriers showed a Damaged in Transit rate far above the operational average.
+2. **Regional & Courier Performance**
+   - Delivery duration and item safety issues were more noticeable outside Java (particularly Medan and Makassar).
+   - Specific courier partners showed Damaged in Transit rates above the operational average.
 
-**3. COD Payment Risk**
-- Transactions with Cash on Delivery (COD) payment method had the highest return vulnerability at 62.89%.
-- Insight: The combination of Fashion category (size / fit issues) and COD payment method increases the tendency for buyers to reject / return goods upon courier arrival.
+3. **COD Return Vulnerability**
+   - Cash on Delivery (COD) transactions showed higher return vulnerability (62.89%), especially when combined with categories prone to sizing/fit issues like Fashion upon delivery.
 
-> Note: The insights above are an example output from the dashboard. The main focus of this project is on building the ETL pipeline and data quality that enables consistent and trustworthy reporting.
+> Note: These insights illustrate example monitoring outputs enabled by the pipeline; the core focus of this repository is the ETL workflow and data reliability.
 
 ---
 
 ## H. What This Pipeline Enables
 
-Because data is now clean, centralized in PostgreSQL, and serves as a Single Source of Truth, the business can:
-- Monitor return rate per category, courier, and region without manual recapitulation from CSV files
-- Identify root causes of returns based on validated data
-- Use a Power BI dashboard directly connected to the database, so data remains consistent
+With standardized tables centralized in PostgreSQL as a Single Source of Truth:
+- Teams can track return rates by category, region, and courier without manual CSV compilation
+- Return causes can be reviewed consistently using validated data
+- Reporting stays aligned through a live connection to the structured database
 
 ---
 
 ## I. Tools & Skills Used
 
-- **ETL Method:** Extract → Transform → Load
-- **Transform:** Python (Pandas) — Data Cleansing, Standardization, Handling Missing Values, Data Validation
-- **Database:** PostgreSQL (DBMS) — Centralized Database, Single Source of Truth
-- **Query:** SQL — Data Validation & Extraction
-- **Visualization:** Power BI — Interactive Dashboard connected to PostgreSQL
-
+- **Pipeline Workflow:** Extract → Transform → Load (ETL)
+- **Data Cleaning & Transformation:** Python (Pandas) — Deduplication, Standardization, Missing Value Handling, Data Quality Validation
+- **Database:** PostgreSQL — Centralized Storage, Single Source of Truth
+- **Querying & Validation:** SQL
+- **BI & Visualization:** Power BI (Connected to PostgreSQL with data model relationships)
 ---
