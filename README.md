@@ -8,84 +8,63 @@
 
 This project builds an **end-to-end ETL pipeline** to transform SAMALARIS e-commerce transaction data from separate per-table CSV files into a clean, centralized database in PostgreSQL as a **Single Source of Truth** for reporting.
 
-Each CSV file was cleaned separately according to its table structure and loaded into PostgreSQL as individual tables (with relationships modeled in Power BI rather than pre-joining tables during ingestion)[cite: 3]. The structured data was then connected to Power BI for sales and return performance monitoring[cite: 3].
+Each CSV file was cleaned separately according to its table structure and loaded into PostgreSQL as individual tables (with relationships modeled in Power BI rather than pre-joining tables during ingestion). The structured data was then connected to Power BI for sales and return performance monitoring.
 
-As an example use case, the dashboard is used to monitor sales performance and return rates in Q3 2026[cite: 3].
+As an example use case, the dashboard is used to monitor sales performance and return rates in Q3 2026.
 
 ---
 
 ## B. Business Problem & Objectives
 
-In Q3 2026, SAMALARIS transaction data was still stored as separate CSV files per table (`dim_customers`, `dim_products`, `order`, `shipping_details`) and was not yet centralized in a database, making it difficult to use for consistent reporting.
+SAMALARIS transaction data (covering Q1–Q3 2026) was previously stored as separate CSV files per table (`dim_customers`, `dim_products`, `order`, `shipping_details`) rather than a centralized database, making consistent reporting and monitoring harder to maintain.
 
 **Main Objectives:**
-- **Extract:** Read each CSV file according to its respective table.
-- **Transform:** Clean duplicates, standardize formats / naming, handle missing values, and validate data quality using Python (Pandas) per table, while preserving the original table structure.
-- **Load:** Load each cleaned table into PostgreSQL (DBMS) as a centralized database.
-- **Visualize:** Build an interactive dashboard in Power BI on top of PostgreSQL.
-
+- **Extract:** Read each CSV file per table (`dim_customers`, `dim_products`, `order`, `shipping_details`).
+- **Transform:** Clean duplicates, standardize formats and naming, handle missing values, and run data quality checks using Python (Pandas) per table while preserving the table structure.
+- **Load:** Load each cleaned table into PostgreSQL as a centralized database acting as a Single Source of Truth.
+- **Visualize:** Build an interactive dashboard in Power BI connected to PostgreSQL, with table relationships configured in the semantic/data model.
 ---
 
 ## C. Dataset Overview
 
-- **Data Source:** SAMALARIS Internal Transaction Data (Q1 - Q3 2026)
-- **Source Files:**
-    - `dim_customers.csv` -> table `dim_customers`
-    - `dim_products.csv` -> table `dim_products`
-    - `order.csv` -> table `order`
-    - `shipping_details.csv` -> table `shipping_details`
-- **Q3 2026 Coverage:**
+- **Data Source:** SAMALARIS Internal Transaction Data (Q1 – Q3 2026)
+- **Source Files & Target Tables:**
+    - `dim_customers.csv` -> `dim_customers`
+    - `dim_products.csv` -> `dim_products`
+    - `order.csv` -> `order` *(note: `order` is a reserved keyword in SQL, so quote as `"order"` when querying in PostgreSQL)*
+    - `shipping_details.csv` -> `shipping_details`
+- **Q3 2026 Highlight Metrics:**
     - Total Orders (Q3): 1,487 Transactions
     - Total Returns (Q3): 829 Transactions (Return Rate: 55.75%)
     - Main Product Categories: Fashion, Home Appliances, Sports, Beauty, Electronics
     - Payment Methods: COD, Bank Transfer, E-Wallet, Credit Card
 
-> Note: Files were already separated per table. No merging / joining was performed during ETL. Table structure was preserved.
+> Note: Source files were processed per table without merging or joining into a single flat table during ETL; table relationships were defined in Power BI for reporting.
 
 ---
 ## D. ETL Pipeline Architecture
 
-CSV Files (Already Separated Per Table)
-
-    - dim_customers.csv -> table dim_customers
-    
-    - dim_products.csv -> table dim_products
-    
-    - order.csv -> table order
-    
-    - shipping_details.csv -> table shipping_details
-    
-        ↓ EXTRACT (Per File / Per Table)
-        
-Python (Pandas)
-
-    - Cleaned duplicates
-    
-    - Standardized formats / naming
-    
-    - Handled missing values
-    
-    - Validated data quality
-    
-    - Table structure preserved, no joining
-    
-        ↓ LOAD (Per Table)
-        
-PostgreSQL (DBMS)
-
-    - Clean & structured tables
-    
-    - Centralized database
-
-    - Single Source of Truth
-    
-        ↓ VISUALIZE
-        
-Power BI Dashboard
-    - Connected directly to PostgreSQL
-    
-    - Table relationships managed in Power BI
-    
+```text
+CSV Files (Per Table)
+  ├── dim_customers.csv
+  ├── dim_products.csv
+  ├── order.csv
+  └── shipping_details.csv
+        │
+        ▼  EXTRACT & TRANSFORM (Python / Pandas per table)
+           - Remove duplicates
+           - Standardize formats & naming
+           - Handle missing values
+           - Run data quality checks
+           - Keep table structure intact (no pre-joining)
+        │
+        ▼  LOAD (PostgreSQL)
+           - Centralized tables as Single Source of Truth
+        │
+        ▼  MODEL & VISUALIZE (Power BI)
+           - Direct connection to PostgreSQL
+           - Table relationships configured in Power BI
+```    
 ---
 
 ## E. Data Quality Checks
